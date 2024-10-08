@@ -1,0 +1,31 @@
+{
+  "name": "std-util",
+  "version": "0.2.3",
+  "description": "Collection of standard functions",
+  "repository": "https://github.com/p00dle/std-ts",
+  "author": "Krzysztof Siuda",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.2",
+    "@types/node": "^22.7.3",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.1"
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node ./build/update-main-file.mjs && rimraf ./dist && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
+    "check": "tsc --noEmit && biome check --fix && vitest run",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "benchmark": "ts-node --swc ./src/benchmark.ts"
+  }
+}
